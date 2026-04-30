@@ -2,13 +2,15 @@
 from flask import Flask, render_template, request
 import os
 
+from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
 from langchain_core.prompts import ChatPromptTemplate
 
+load_dotenv()
 app = Flask(__name__)
 
 # Set your API key
-os.environ["OPENROUTER_API_KEY"] = "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"
+os.environ["OPENROUTER_API_KEY"] = os.getenv("OPENROUTER_API_KEY")
 
 # Initialize model
 model = init_chat_model(
